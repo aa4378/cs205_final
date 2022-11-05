@@ -10,3 +10,11 @@
 # The spacing and header formatting should match the above formatting description exactly.
 # There should be a comment explaining the purpose of each line in your shell script. 
 # The data file will be passed in to the script as a positional parameter and will not necessarily be called pokemon.dat. However, you can assume that any file passed to this script will be formatted exactly the way pokemon.dat is formatted.
+
+#!/bin/awk -f
+#line 16 prints out the first two lines such as: SUMMARY OF DATA FILE and the file name
+BEGIN { FS="	"; print "===== SUMMARY OF DATA FILE ===== \n     File name:", ARGV[1]}
+#line 18 just calculates the total pokemon, the total hp, and the total attack
+{ if(NR>1) {n++; Total=$1; HP+=$5; Attack+=$6}}
+#line 20 calculates the average hp and average attack. It also prints the rest of the data out as well as END SUMMARY
+END {averageHP=HP/n; averageAttack=Attack/n; print "     Total Pokemon: ", Total; print "     Avg. HP: "averageHP; print "     Avg. Attack: ", averageAttack; print "===== END SUMMARY ====="}
